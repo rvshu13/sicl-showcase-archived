@@ -10,6 +10,9 @@
 		"lint": "prettier --check --plugin-search-dir=. . && eslint .",
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
+	"dependencies": {
+		"@stencil/core": "latest"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
@@ -18,7 +21,10 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
+		"sass": "^1.53.0",
+		"sicl": "^0.0.6",
 		"svelte": "^3.44.0",
+		"svelte-preprocess": "^4.10.7",
 		"vite": "^2.9.13"
 	},
 	"type": "module"
