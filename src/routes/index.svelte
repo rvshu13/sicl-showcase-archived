@@ -1,5 +1,5 @@
 <script>
-	import { defineCustomElements } from 'sicl/loader';
+	import { defineCustomElements } from 'sicl/loader/index.cjs.js';
 	import 'sicl/dist/sicl/sicl.css';
 
 	defineCustomElements();
