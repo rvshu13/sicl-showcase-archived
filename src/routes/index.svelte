@@ -1,8 +1,9 @@
-<script>
-	import { defineCustomElements } from 'sicl/loader';
-	import 'sicl/dist/sicl/sicl.css';
+<script context="module">
+	export const hydrate = false;
+</script>
 
-	defineCustomElements();
+<script>
+	import 'sicl/dist/sicl/sicl.css';
 
 	let date = new Date();
 	let dateOptions = {
@@ -38,9 +39,6 @@
 	</div>
 </div>
 
-<!-- Custom components test -->
-<sicl-button class="primary" type="button">Button</sicl-button>
-
 <style lang="scss">
 	:root {
 		background-color: var(--background-color);
@@ -48,7 +46,7 @@
 		scrollbar-width: none;
 		scroll-behavior: smooth;
 		overflow-y: scroll;
-    	scroll-snap-type: y mandatory;
+		scroll-snap-type: y mandatory;
 
 		&::-webkit-scrollbar {
 			display: none;
@@ -89,11 +87,14 @@
 		}
 		.more-below-container {
 			position: absolute;
-			bottom: 0;
+			bottom: 36px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			color: var(
+				--text-subtitle-color
+			); // to override default 'currentcolor' - cannot use inline styles
 		}
 	}
 
