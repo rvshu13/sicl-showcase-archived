@@ -15,6 +15,7 @@
 </script>
 
 <div class="hero">
+	<!-- <sicl-button type="button" class="primary theme-switcher" icon-left="sun"></sicl-button> -->
 	<div class="header">
 		<h1>✨SICL✨</h1>
 		<h4>Simple & Intuitive Component Library.</h4>
@@ -75,9 +76,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		width: 100vw;
 		scroll-snap-align: start;
+		box-sizing: border-box;
+		padding: 36px 36px 36px 0px;
 		.header {
 			display: flex;
 			flex-direction: column;
@@ -86,8 +89,6 @@
 			width: 100vw;
 		}
 		.more-below-container {
-			position: absolute;
-			bottom: 36px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -95,6 +96,9 @@
 			color: var(
 				--text-subtitle-color
 			); // to override default 'currentcolor' - cannot use inline styles
+		}
+		.theme-switcher {
+			align-self: flex-end;
 		}
 	}
 
