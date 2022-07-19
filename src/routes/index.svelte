@@ -15,7 +15,7 @@
 </script>
 
 <div class="hero">
-	<!-- <sicl-button type="button" class="primary theme-switcher" icon-left="sun"></sicl-button> -->
+	<sicl-button type="button" class="primary theme-switcher" icon-left="sun"></sicl-button>
 	<div class="header">
 		<h1>✨SICL✨</h1>
 		<h4>Simple & Intuitive Component Library.</h4>
@@ -34,7 +34,25 @@
 				<h4>Today is {date.toLocaleDateString(undefined, dateOptions)}</h4>
 			</div>
 		</div>
-		<div class="form" />
+		<div class="form">
+			<h2>Expenses subheader</h2>
+			<p>Paragraph (will be changed later)</p>
+			<span class="form-wrapper">
+				<sicl-input type="primary" label-text="Name (max. 40 characters)" placeholder="ex. Dinner"></sicl-input>
+				<sicl-input type="primary" label-text="Value" placeholder="$ 4.11"></sicl-input>
+				<sicl-radio-group name="payment-type">
+					<sicl-radio label-text="💳 Card" checked></sicl-radio>
+					<sicl-radio label-text="💵 Cash" ></sicl-radio>
+				</sicl-radio-group>
+				<sicl-checkbox label-text="Alcohol"></sicl-checkbox>
+				<sicl-checkbox label-text="Fast food"></sicl-checkbox>
+				<sicl-checkbox label-text="Do you regret this?"></sicl-checkbox>
+				<span class="button-row">
+					<sicl-button type="button" class="tertiary" icon-left="trash">Clear</sicl-button>
+					<sicl-button type="submit" class="primary" icon-right="arrow-right">Add</sicl-button>
+				</span>
+			</span>
+		</div>
 		<div class="list" />
 		<div class="total" />
 	</div>
@@ -126,6 +144,24 @@
 				background-color: var(--container-background-color);
 				border-radius: 8px;
 				border: 1px solid var(--checkbox-outline-color); // TODO: make this a theme color
+				.form-wrapper {
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					align-items: flex-start;
+					row-gap: 16px;
+					width: 100%;
+				}
+				.button-row {
+					box-sizing: border-box;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					width: 100%;
+					padding: 32px;
+				}
 			}
 			.header {
 				grid-area: header;
