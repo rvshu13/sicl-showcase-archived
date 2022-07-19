@@ -23,7 +23,7 @@
 	<div class="more-below-container">
 		<!-- TODO: add text-transform to h5 style definition -->
 		<h5 style="text-transform: uppercase;">Showcase below</h5>
-		<sicl-icon size="48px" name="arrow-down" />
+		<sicl-icon style="color: var(--text-subtitle-color);" size="48px" name="arrow-down" />
 	</div>
 </div>
 <div class="showcase">
@@ -35,21 +35,25 @@
 			</div>
 		</div>
 		<div class="form">
-			<h2>Expenses subheader</h2>
-			<p>Paragraph (will be changed later)</p>
+			<span class="form-header">
+				<h3>Any expenses today?</h3>
+				<p class="body-1 regular">Put them in with the form below, I will try to save them in a list on the right.</p>
+			</span>
 			<span class="form-wrapper">
-				<sicl-input type="primary" label-text="Name (max. 40 characters)" placeholder="ex. Dinner"></sicl-input>
-				<sicl-input type="primary" label-text="Value" placeholder="$ 4.11"></sicl-input>
-				<sicl-radio-group name="payment-type">
+				<sicl-input style="width: 100%;" type="primary" label-text="Name (max. 40 characters)" placeholder="ex. Dinner"></sicl-input>
+				<sicl-input style="width: 35%;" type="primary" label-text="Value" placeholder="$ 4.11"></sicl-input>
+				<sicl-radio-group name="payment-type" label-text="Payment type">
 					<sicl-radio label-text="💳 Card" checked></sicl-radio>
 					<sicl-radio label-text="💵 Cash" ></sicl-radio>
 				</sicl-radio-group>
-				<sicl-checkbox label-text="Alcohol"></sicl-checkbox>
-				<sicl-checkbox label-text="Fast food"></sicl-checkbox>
-				<sicl-checkbox label-text="Do you regret this?"></sicl-checkbox>
-				<span class="button-row">
+				<sicl-checkbox-group name="additional" label-text="Additional info">
+					<sicl-checkbox label-text="🍟 Fast food"></sicl-checkbox>
+					<sicl-checkbox label-text="🍻 Alcohol"></sicl-checkbox>
+					<sicl-checkbox label-text="👀 Do you regret this?"></sicl-checkbox>
+				</sicl-checkbox-group>
+				<span class="form-buttons">
 					<sicl-button type="button" class="tertiary" icon-left="trash">Clear</sicl-button>
-					<sicl-button type="submit" class="primary" icon-right="arrow-right">Add</sicl-button>
+					<sicl-button type="submit" class="primary" icon-right="arrow-right">Add an expense</sicl-button>
 				</span>
 			</span>
 		</div>
@@ -111,9 +115,6 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			color: var(
-				--text-subtitle-color
-			); // to override default 'currentcolor' - cannot use inline styles
 		}
 		.theme-switcher {
 			align-self: flex-end;
@@ -143,31 +144,38 @@
 				grid-area: form;
 				background-color: var(--container-background-color);
 				border-radius: 8px;
-				border: 1px solid var(--checkbox-outline-color); // TODO: make this a theme color
+				border: 1px solid var(--container-border-color);
+				box-sizing: border-box;
+				.form-header {
+					display: flex;
+					flex-direction: column;
+					margin: 36px 48px 36px 48px;
+				}
 				.form-wrapper {
-					box-sizing: border-box;
+					margin: 36px 0px 36px 48px;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
 					align-items: flex-start;
 					row-gap: 16px;
-					width: 100%;
-				}
-				.button-row {
-					box-sizing: border-box;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
-					width: 100%;
-					padding: 32px;
+					.form-buttons {
+						box-sizing: border-box;
+						display: flex;
+						flex-direction: row;
+						justify-content: center;
+						align-items: center;
+						align-content: center;
+						column-gap: 64px;
+						width: 100%;
+						padding: 0 128px;
+					}
 				}
 			}
 			.header {
 				grid-area: header;
 				background-color: var(--container-background-color);
 				border-radius: 8px;
-				border: 1px solid var(--checkbox-outline-color); // TODO: make this a theme color
+				border: 1px solid var(--container-border-color);
 				display: flex;
 				flex-direction: row;
 				align-items: center;
@@ -184,13 +192,13 @@
 				grid-area: total;
 				background-color: var(--container-background-color);
 				border-radius: 8px;
-				border: 1px solid var(--checkbox-outline-color); // TODO: make this a theme color
+				border: 1px solid var(--container-border-color);
 			}
 			.list {
 				grid-area: list;
 				background-color: var(--container-background-color);
 				border-radius: 8px;
-				border: 1px solid var(--checkbox-outline-color); // TODO: make this a theme color
+				border: 1px solid var(--container-border-color);
 			}
 		}
 	}
