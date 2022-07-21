@@ -4,9 +4,6 @@
 
 <script>
 	import ListItem from "$lib/components/ListItem.svelte";
-	import { makeServer } from "$lib/server";
-
-	makeServer();
 
 	let date = new Date();
 	let dateOptions = {
