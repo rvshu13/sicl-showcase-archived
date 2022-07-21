@@ -3,7 +3,10 @@
 </script>
 
 <script>
-	import 'sicl/dist/sicl/sicl.css';
+	import ListItem from "$lib/components/ListItem.svelte";
+	import { makeServer } from "$lib/server";
+
+	makeServer();
 
 	let date = new Date();
 	let dateOptions = {
@@ -57,7 +60,16 @@
 				</span>
 			</span>
 		</div>
-		<div class="list" />
+		<div class="list">
+			<ListItem 
+				id="0"
+				dateAdded={date}
+				description="Takeway pasta for lunch"
+				value="4.11"
+				paymentType="card"
+				additional={["fast-food"]}
+				/>
+		</div>
 		<div class="total" />
 	</div>
 </div>
@@ -146,18 +158,20 @@
 				border-radius: 8px;
 				border: 1px solid var(--container-border-color);
 				box-sizing: border-box;
+				padding: 36px 48px;
+				display: flex;
+				flex-direction: column;
+				row-gap: 24px;
 				.form-header {
 					display: flex;
 					flex-direction: column;
-					margin: 36px 48px 36px 48px;
 				}
 				.form-wrapper {
-					margin: 36px 0px 36px 48px;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
 					align-items: flex-start;
-					row-gap: 16px;
+					height: 100%;
 					.form-buttons {
 						box-sizing: border-box;
 						display: flex;
@@ -167,7 +181,7 @@
 						align-content: center;
 						column-gap: 64px;
 						width: 100%;
-						padding: 0 128px;
+						padding: 8px 128px 0 128px;
 					}
 				}
 			}
@@ -199,6 +213,7 @@
 				background-color: var(--container-background-color);
 				border-radius: 8px;
 				border: 1px solid var(--container-border-color);
+				padding: 48px;
 			}
 		}
 	}
