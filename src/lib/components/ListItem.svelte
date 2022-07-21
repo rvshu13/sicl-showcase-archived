@@ -9,9 +9,10 @@
     let valueFormatted = new Intl.NumberFormat('en-US', {style: "currency", currency: "USD"}).format(value);
     let dateFormatted = new Date(dateAdded).toISOString().split("T")[0];
 
-    function deleteExpense(id) {
-        // TODO: implement after API is ready
-        console.log(dateAdded);
+    async function deleteExpense(id) {
+        await fetch(`/api/expenses/${id}`, {
+            method: "delete"
+        });
     }
 </script>
 

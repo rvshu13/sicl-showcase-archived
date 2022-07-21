@@ -1,9 +1,26 @@
 <script context="module">
 	export const hydrate = false;
+
+	// export async function load({ fetch }) {
+	// 	//const res = await fetch('/api/expenses');
+	// 	//expenses = await res.json();
+	// 	console.log('mounted ssr');
+
+	// 	return {};
+	// }
 </script>
 
 <script>
-	import ListItem from "$lib/components/ListItem.svelte";
+	import ListItem from '$lib/components/ListItem.svelte';
+	import { onMount } from 'svelte';
+
+	let expenses = [];
+
+	onMount(async () => {
+		const res = await fetch('/api/expenses');
+		expenses = await res.json();
+		console.log('mounted spa');
+	});
 
 	let date = new Date();
 	let dateOptions = {
@@ -12,10 +29,12 @@
 		month: 'long',
 		day: 'numeric'
 	};
+
+	$: totalValue: expenses.reduce((acc, curr) => acc.value + curr.value, 0);
 </script>
 
 <div class="hero">
-	<sicl-button type="button" class="primary theme-switcher" icon-left="sun"></sicl-button>
+	<sicl-button type="button" class="primary theme-switcher" icon-left="sun" />
 	<div class="header">
 		<h1>✨SICL✨</h1>
 		<h4>Simple & Intuitive Component Library.</h4>
@@ -37,35 +56,39 @@
 		<div class="form">
 			<span class="form-header">
 				<h3>Any expenses today?</h3>
-				<p class="body-1 regular">Put them in with the form below, I will try to save them in a list on the right.</p>
+				<p class="body-1 regular">
+					Put them in with the form below, I will try to save them in a list on the right.
+				</p>
 			</span>
 			<span class="form-wrapper">
-				<sicl-input style="width: 100%;" type="primary" label-text="Name (max. 40 characters)" placeholder="ex. Dinner"></sicl-input>
-				<sicl-input style="width: 35%;" type="primary" label-text="Value" placeholder="$ 4.11"></sicl-input>
+				<sicl-input
+					style="width: 100%;"
+					type="primary"
+					label-text="Name (max. 40 characters)"
+					placeholder="ex. Dinner"
+				/>
+				<sicl-input style="width: 35%;" type="primary" label-text="Value" placeholder="$ 4.11" />
 				<sicl-radio-group name="payment-type" label-text="Payment type">
-					<sicl-radio label-text="💳 Card" checked></sicl-radio>
-					<sicl-radio label-text="💵 Cash" ></sicl-radio>
+					<sicl-radio label-text="💳 Card" checked />
+					<sicl-radio label-text="💵 Cash" />
 				</sicl-radio-group>
 				<sicl-checkbox-group name="additional" label-text="Additional info">
-					<sicl-checkbox label-text="🍟 Fast food"></sicl-checkbox>
-					<sicl-checkbox label-text="🍻 Alcohol"></sicl-checkbox>
-					<sicl-checkbox label-text="👀 Do you regret this?"></sicl-checkbox>
+					<sicl-checkbox label-text="🍟 Fast food" />
+					<sicl-checkbox label-text="🍻 Alcohol" />
+					<sicl-checkbox label-text="👀 Do you regret this?" />
 				</sicl-checkbox-group>
 				<span class="form-buttons">
 					<sicl-button type="button" class="tertiary" icon-left="trash">Clear</sicl-button>
-					<sicl-button type="submit" class="primary" icon-right="arrow-right">Add an expense</sicl-button>
+					<sicl-button type="submit" class="primary" icon-right="arrow-right"
+						>Add an expense</sicl-button
+					>
 				</span>
 			</span>
 		</div>
 		<div class="list">
-			<ListItem 
-				id="0"
-				dateAdded={date}
-				description="Takeway pasta for lunch"
-				value="4.11"
-				paymentType="card"
-				additional={["fast-food"]}
-				/>
+			{#each expenses as expense (expense.id)}
+				<ListItem {expense} />
+			{/each}
 		</div>
 		<div class="total" />
 	</div>
@@ -211,6 +234,11 @@
 				border-radius: 8px;
 				border: 1px solid var(--container-border-color);
 				padding: 48px;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: center;
+				row-gap: 16px;
 			}
 		}
 	}
