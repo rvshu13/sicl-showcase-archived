@@ -1,8 +1,5 @@
 import adapter from '@sveltejs/adapter-static';
 import sveltePreprocess from 'svelte-preprocess';
-import { makeServer } from '$lib/server';
-
-makeServer();
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
